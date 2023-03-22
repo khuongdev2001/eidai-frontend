@@ -1,0 +1,41 @@
+.wpProduct {
+    .title {
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .breadcrumbs {
+        padding: 15px 0;
+    }
+    .tableProduct {
+        .productImage {
+            width: 70px;
+            height: 70px;
+            overflow: hidden;
+            border-radius: 5px;
+            display: block;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .productFilter {
+        .filterItem {
+            padding: 8px 0;
+        }
+        .productSearchName {
+            display: inline-block;
+            position: relative;
+            .input {
+                #input-with-sx {
+                    display: none;
+                }
+            }
+            .icon {
+                position: absolute;
+                top: 50%;
+                left: 10%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}

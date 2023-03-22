@@ -1,0 +1,71 @@
+.wpContent {
+    display: flex;
+    .sidebar {
+        position: sticky;
+        top: 0px;
+        background-color: #f7faff;
+        height: 100vh;
+        width: 260px;
+        padding: 30px;
+        .topSidebar {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            .logo {
+                width: 100px;
+                display: inline-block;
+                img {
+                    width: 100%;
+                }
+            }
+            .logoTitle {
+                font-size: 16px;
+                font-weight: bold;
+            }
+        }
+        .menuSidebar {
+            padding: 15px 10px;
+            line-height: 1.5;
+            .menuItem {
+                padding: 10px 0;
+                .menuLink {
+                    display: flex;
+                    font-size: 20px;
+                    justify-content: space-between;
+                    color: #000;
+                    .menuTitle {
+                        padding: 0 15px;
+                    }
+                    .menuIcon {
+                        font-size: 25px;
+                    }
+                    .iconActive {
+                        transition: all 0.2s;
+                    }
+                }
+                .subMenu {
+                    padding-top: 14px;
+                    display: none;
+                    transition: all 0.5s;
+                    .subMenuItem {
+                        font-size: 14px;
+                        padding: 7px 0px 7px 40px;
+                    }
+                }
+                &.active {
+                    .iconActive {
+                        transform: rotate(180deg);
+                    }
+                    .subMenu {
+                        display: unset;
+                    }
+                }
+            }
+        }
+    }
+    .content {
+        width: 100%;
+        padding: 25px;
+    }
+}
