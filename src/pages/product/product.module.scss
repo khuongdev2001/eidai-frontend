@@ -18,23 +18,25 @@
             }
         }
     }
-    .productFilter {
-        .filterItem {
-            padding: 8px 0;
-        }
-        .productSearchName {
-            display: inline-block;
-            position: relative;
-            .input {
-                #input-with-sx {
-                    display: none;
-                }
+    .boxTop{
+        .productFilter {
+            .filterItem {
+                padding: 8px 0;
             }
-            .icon {
-                position: absolute;
-                top: 50%;
-                left: 10%;
-                transform: translate(-50%, -50%);
+            .productSearchName {
+                display: inline-block;
+                position: relative;
+                .input {
+                    #input-with-sx {
+                        display: none;
+                    }
+                }
+                .icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 10%;
+                    transform: translate(-50%, -50%);
+                }
             }
         }
     }

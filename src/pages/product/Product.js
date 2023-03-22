@@ -16,10 +16,11 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import FA from "react-fontawesome";
 import styles from "./product.module.scss";
-import { Table, TableBody } from '@mui/material';
+import { Table, TableBody, Tooltip } from '@mui/material';
 import { BoxFlex, ButtonAction } from '../../components/layout/Base';
 import EditIcon from '@mui/icons-material/Edit';
-import { Delete } from '@mui/icons-material';
+import { Add, Delete } from '@mui/icons-material';
+import FormProduct from './FormProduct';
 
 function Product() {
     return (<div className={styles.wpProduct}>
@@ -34,30 +35,40 @@ function Product() {
             </Link>
             <Typography color="text.primary">Danh sách sản phẩm</Typography>
         </Breadcrumbs>
-        <div className={styles.productFilter}>
-            <div className={[styles.productSearchName, styles.filterItem].join(" ")}>
-                <FA name='search' className={styles.icon} />
-                <TextField id="input-with" size='small' />
+        <BoxFlex className={styles.boxTop} justifyContent="space-between" alignItems="center">
+            <div className={[styles.productFilter, styles.boxLeft].join(" ")}>
+                <div className={[styles.productSearchName, styles.filterItem].join(" ")}>
+                    <FA name='search' className={styles.icon} />
+                    <TextField id="input-with" size='small' />
+                </div>
+                {["Kiểu lát", "Loại sàn", "Loại gỗ"].map((value, index) => {
+                    return (<FormControl key={index} sx={{ width: 150, ml: 2 }} className={[styles.filterItem].join(" ")}>
+                        <InputLabel id="demo-multiple-checkbox-label">{value}</InputLabel>
+                        <Select
+                            labelId="demo-multiple-checkbox-label"
+                            id="demo-multiple-checkbox"
+                            multiple
+                            value={[]}
+                            input={<OutlinedInput size='small' label="Tag" />}
+                            renderValue={(selected) => selected.join(', ')}
+                        >
+                            <MenuItem value="gỗ">
+                                <Checkbox />
+                                <ListItemText primary={"Gỗ"} />
+                            </MenuItem>
+                        </Select>
+                    </FormControl>)
+                })}
             </div>
-            {["Kiểu lát", "Loại sàn", "Loại gỗ"].map((value, index) => {
-                return (<FormControl key={index} sx={{ width: 150, ml: 2 }} className={[styles.filterItem].join(" ")}>
-                    <InputLabel id="demo-multiple-checkbox-label">{value}</InputLabel>
-                    <Select
-                        labelId="demo-multiple-checkbox-label"
-                        id="demo-multiple-checkbox"
-                        multiple
-                        value={[]}
-                        input={<OutlinedInput size='small' label="Tag" />}
-                        renderValue={(selected) => selected.join(', ')}
-                    >
-                        <MenuItem value="gỗ">
-                            <Checkbox />
-                            <ListItemText primary={"Gỗ"} />
-                        </MenuItem>
-                    </Select>
-                </FormControl>)
-            })}
-        </div>
+            <div className={styles.boxRight}>
+                <Tooltip title="Thêm sản phẩm">
+                    <Button variant="contained" color="primary" size="small">
+                        <Add />
+                    </Button>
+                </Tooltip>
+            </div>
+            <FormProduct/>
+        </BoxFlex>
         <div className={styles.tableProduct}>
             <Table size='sm' style={{ width: "100%" }}>
                 <TableHead>
@@ -143,14 +154,12 @@ function Product() {
                                     trơn, bóng
                                 </TableCell>
                                 <TableCell>
-                                    <BoxFlex>
-                                        <ButtonAction type='info'>
-                                            <EditIcon fontSize='small' />
-                                        </ButtonAction>
-                                        <ButtonAction type='danger'>
-                                            <Delete fontSize='small'/>
-                                        </ButtonAction>
-                                    </BoxFlex>
+                                    <ButtonAction mx={10} type='info'>
+                                        <EditIcon fontSize='small' />
+                                    </ButtonAction>
+                                    <ButtonAction type='danger'>
+                                        <Delete fontSize='small' />
+                                    </ButtonAction>
                                 </TableCell>
                             </TableRow>
                         )
