@@ -1,0 +1,25 @@
+.formBanner {
+    padding: 15px 0;
+    .boxUpload {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px dashed;
+        .btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: none;
+            transform: translate(-50%, -50%);
+            .btnIcon {
+                font-size: 50px;
+            }
+        }
+        &:hover {
+            .btn {
+                display: block;
+            }
+        }
+    }
+}

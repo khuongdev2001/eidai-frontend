@@ -5,6 +5,9 @@ const menuSidebar = [
         childrens: [
             {
                 name: "Danh sản phẩm"
+            },
+            {
+                name: "Danh Sách Thuộc Tính"
             }
         ]
     },

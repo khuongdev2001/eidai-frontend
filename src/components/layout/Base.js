@@ -121,5 +121,31 @@ export const ButtonAction = styled.button`
 
 export const H3 = styled.h3`
     font-size:25px;
-    font-weight:bold
+    font-weight:bold;
+    ${props => props.px && css`
+        padding-left: ${props.px}px;
+        padding-right: ${props.px}px;
+    `}
+    ${props => props.py && css`
+        padding-top: ${props.py}px;
+        padding-bottom: ${props.py}px;
+    `}
+`;
+
+export const H4 = styled.h3`
+    font-size:20px;
+    font-weight:bold;
+    ${props => props.px && css`
+        padding-left: ${props.px}px;
+        padding-right: ${props.px}px;
+    `}
+    ${props => props.py && css`
+        padding-top: ${props.py}px;
+        padding-bottom: ${props.py}px;
+    `}
+
+`;
+
+export const Thumbnail = styled.img`
+    width: 100%;
 `;

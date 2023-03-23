@@ -1,0 +1,33 @@
+.listImageProduct {
+    .imageItem {
+        margin: 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        .btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            .btnIcon {
+                color: var(--light);
+                font-size: 30px;
+            }
+            display: none;
+        }
+        &:hover {
+            .btn {
+                display: block;
+            }
+        }
+        img {
+            width: 100%;
+        }
+    }
+    .itemUpload {
+        border: 1px dashed;
+    }
+}

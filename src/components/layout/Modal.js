@@ -43,7 +43,7 @@ function Modal({
                                         onSetIsShow(false)
                                         onClose();
                                     }}
-                                    className={[ "btnCancel"].join(" ")} variant="outlined" size="small">
+                                    className={["btnCancel"].join(" ")} variant="outlined" size="small">
                                     {btnTextCancel}
                                 </Button>
                                 <Button
@@ -67,12 +67,15 @@ const ModalStyle = styled.div`
     top: 0;
     left: 0;
     z-index: 100;
-    overflow: auto;
+    overflow: hidden;
     ${(props) => {
         return props.zIndex && css`
         z-index:${props.zIndex};
     `
     }
+    }
+    form{
+        padding: 20px 0;
     }
     .modalOuter {
         position: fixed;
@@ -155,6 +158,10 @@ const ModalStyle = styled.div`
                 cursor: pointer;
                 z-index: 10;
             }
+        }
+        .modalContent{
+            max-height: calc(80vh);
+            overflow-y: auto;
         }
         .modalFooter{
             float:right;
