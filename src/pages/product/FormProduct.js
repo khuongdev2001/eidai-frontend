@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import styles from "./formProduct.module.scss";
 import { BoxFlex, H3, H4 } from "../../components/layout/Base";
@@ -13,10 +13,14 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import UploadImage from './UploadImage';
 import ProductProperty from './ProductProperty';
+import { ProductContext } from '../../context/ProductContext';
 
 function FormProduct() {
+    const ThemeProductContext = useContext(ProductContext);
     const editorRef = useRef();
-    return (<Modal isShow={true} size="lg" position="center">
+    const [isShow, setIshow] = useState(false);
+    ThemeProductContext.current.setIshow = setIshow;
+    return (<Modal isShow={isShow} onClose={() => setIshow(false)} size="lg" position="center">
         <H3>Thêm Sản Phẩm</H3>
         <form className={styles.formProduct}>
             <TextField
@@ -45,7 +49,7 @@ function FormProduct() {
             </div>
             <div className={styles.box}>
                 <H4 py={10}>Thuộc Tính Sản Phẩm</H4>
-                <ProductProperty/>
+                <ProductProperty />
             </div>
             <div className={[styles.productShortDescription, styles.box].join(" ")}>
                 <H4 className={styles.lableField}>Mô tả ngắn</H4>
