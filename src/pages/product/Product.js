@@ -17,7 +17,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import FA from "react-fontawesome";
 import styles from "./product.module.scss";
-import { Table, TableBody, Tooltip } from '@mui/material';
+import { debounce, Table, TableBody, Tooltip } from '@mui/material';
 import { BoxFlex, ButtonAction } from '../../components/layout/Base';
 import EditIcon from '@mui/icons-material/Edit';
 import { Add, Delete } from '@mui/icons-material';
@@ -28,6 +28,7 @@ import axios from 'axios';
 function Product() {
 
     const [products, setProducts] = useState([]);
+    const [filter, setFilter] = useState({});
     const productRef = useRef({});
     useEffect(() => {
         axios.get(API_GET_LIST_PRODUCT)
@@ -42,12 +43,10 @@ function Product() {
             .finally(function () {
                 // always executed
             });
-    },[]);
+    }, [filter]);
     function handleOpenForm() {
         productRef.current.setIshow(true);
     }
-
-
     return (
         <ProductContext.Provider value={productRef}>
             <div className={styles.wpProduct}>
