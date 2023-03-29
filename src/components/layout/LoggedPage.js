@@ -1,15 +1,20 @@
 import FA from "react-fontawesome";
-import { useState } from "react";
+import { LoggedPageContext } from "../../context/LoggedPageContext";
+import { useState, useContext, useRef } from "react";
 import { menuSidebar } from "../../data/sidebar.data";
 import styles from "./loggedPage.module.scss";
+import { NavLink  } from "react-router-dom";
+import Loadding from "./Loading";
+import SnackbarComponent from "./SnackbarComponent";
 
 function LoggedPage({ children }) {
     const [indexActive, setIndexActive] = useState(0);
+    const loggedRef = useRef({});
     function handleToggleMenu(index) {
         setIndexActive(indexActive === index ? null : index);
     }
     return (
-        <>
+        <LoggedPageContext.Provider value={loggedRef}>
             {/* <Header /> */}
             <div className={styles.wpContent}>
                 <div className={styles.sidebar}>
@@ -38,7 +43,10 @@ function LoggedPage({ children }) {
                                         {
                                             value.childrens.map((value, index) => {
                                                 return (<li key={index} className={styles.subMenuItem}>
-                                                    <a href="" className={styles.subMenuLink}>{value.name}</a>
+                                                    <NavLink  to={value.route}
+                                                        className={({ isActive }) => {
+                                                            return (isActive ? styles.active : null)
+                                                        }}>{value.name}</NavLink >
                                                 </li>)
                                             })
                                         }
@@ -52,8 +60,10 @@ function LoggedPage({ children }) {
                     {children}
                 </div>
             </div>
+            {/* <Loadding /> */}
+            <SnackbarComponent/>
             {/* <Footer /> */}
-        </>
+        </LoggedPageContext.Provider>
     )
 }
 

@@ -4,12 +4,15 @@ import { H3 } from "../../components/layout/Base";
 import Modal from "../../components/layout/Modal";
 import axiosCommon from "../../api/axios";
 import { API_DELETE_PROPERTY } from "../../api/productProperty";
+import { LoggedPageContext } from '../../context/LoggedPageContext';
 
 
 function DeleteProductProperty() {
     const [isShow, setIshow] = useState(false);
     const propertyRef = useRef();
     const ThemeProductPropertyContext = useContext(ProductPropertyContext);
+    const ThemeLoggedPageContext = useContext(LoggedPageContext);
+
     ThemeProductPropertyContext.current.handleDelete = function (id) {
         propertyRef.current = id;
         setIshow(true);
@@ -17,7 +20,9 @@ function DeleteProductProperty() {
 
     function handleDelete() {
         axiosCommon.post(API_DELETE_PROPERTY, { id: propertyRef.current }).then(() => {
-            alert("delete success fully");
+            ThemeLoggedPageContext.current.snackbar.open({
+                message: "Delete Thuộc Tính Thành Công"
+            })
             ThemeProductPropertyContext.current.refresh();
             setIshow(false);
         })

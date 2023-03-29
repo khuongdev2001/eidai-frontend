@@ -6,13 +6,16 @@ import Modal from "../../components/layout/Modal";
 import ProductPropertyValidate, { schemas } from "./validates/FormProductProperty";
 import axiosCommon from "../../api/axios";
 import { API_CREATED_PROPERTY, API_UPDATED_PROPERTY, API_VIEW_PROPERTY } from "../../api/productProperty";
+import { LoggedPageContext } from '../../context/LoggedPageContext';
 
 function FormProductProperty() {
     const [isShow, setIshow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [property, setProperty] = useState(schemas);
     const [errors, setErrors] = useState({});
     const propertyRef = useRef({ id: null, action: "create" });
     const ThemeProductPropertyContext = useContext(ProductPropertyContext);
+    const ThemeLoggedPageContext = useContext(LoggedPageContext);
 
     ThemeProductPropertyContext.current.handleUpdate = function (id) {
         setProperty(schemas);
@@ -42,16 +45,26 @@ function FormProductProperty() {
 
     function handleCreate() {
         axiosCommon.post(API_CREATED_PROPERTY, property).then(() => {
-            ThemeProductPropertyContext.current.refresh();
-            setIshow(false);
+            clearAfterSubmit();
+            ThemeLoggedPageContext.current.snackbar.open({
+                message: "Tạo Thuộc Tính Thành Công"
+            })
         })
     }
 
     function handleUpdate() {
         axiosCommon.post(API_UPDATED_PROPERTY, property, { id: propertyRef.current }).then(() => {
-            ThemeProductPropertyContext.current.refresh();
-            setIshow(false);
+            clearAfterSubmit();
+            ThemeLoggedPageContext.current.snackbar.open({
+                message: "Cập Nhật Thuộc Tính Thành Công"
+            })
         })
+    }
+
+    function clearAfterSubmit() {
+        ThemeProductPropertyContext.current.refresh();
+        setIshow(false);
+        setIsLoading(false);
     }
 
     function handleSubmit(e) {
@@ -61,7 +74,7 @@ function FormProductProperty() {
         if (Object.keys(errors).length) {
             return;
         }
-        console.log(propertyRef.current.action);
+        setIsLoading(true);
         switch (propertyRef.current.action) {
             case "create":
                 handleCreate();
@@ -75,6 +88,7 @@ function FormProductProperty() {
     return (<Modal
         onSubmit={handleSubmit}
         onClose={() => setIshow(false)}
+        isLoading={isLoading}
         isShow={isShow} size="xl" position="center">
         <H3 py={20}>Thêm Thuộc Tính Sản Phẩm</H3>
         <form onSubmit={handleSubmit}>

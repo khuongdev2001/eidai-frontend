@@ -4,11 +4,17 @@ const menuSidebar = [
         icon: "product-hunt",
         childrens: [
             {
+                route: "/reactjs/product",
                 name: "Danh sản phẩm"
             },
             {
-                name: "Danh Sách Thuộc Tính"
-            }
+                route: "/reactjs/product/category",
+                name: "Danh sách danh mục"
+            },
+            {
+                route: "/reactjs/product/property",
+                name: "Danh sách thuộc tính"
+            },
         ]
     },
     {

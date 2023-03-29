@@ -51,6 +51,10 @@
                     .subMenuItem {
                         font-size: 14px;
                         padding: 7px 0px 7px 40px;
+                        .active {
+                            font-weight: bold;
+                            display: block;
+                        }
                     }
                 }
                 &.active {

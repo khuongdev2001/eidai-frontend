@@ -1,10 +1,13 @@
 import React from "react";
 import FontAwesome from "react-fontawesome";
 import styled, { css } from "styled-components";
-import { Button } from "@mui/material";
+import { Button, LinearProgress } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 function Modal({
     isShow = false,
     children,
+    isLoading = false,
+    disable = false,
     btnTextConfirm = "Lưu",
     btnTextCancel = "Thoát",
     showModalFooter = true,
@@ -24,6 +27,16 @@ function Modal({
                     }}
                     className="modalOuter" />
                 <div id="modalDialog" className={["modalDialog", props.classDialog].join(" ")}>
+                    {
+                        isLoading && (<div style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%"
+                        }}>
+                            <LinearProgress></LinearProgress>
+                        </div>)
+                    }
                     <div className="modalHeader">
                         <FontAwesome
                             onClick={() => {
@@ -46,11 +59,12 @@ function Modal({
                                     className={["btnCancel"].join(" ")} variant="outlined" size="small">
                                     {btnTextCancel}
                                 </Button>
-                                <Button
+                                <LoadingButton
+                                    loading={isLoading}
                                     onClick={onSubmit}
                                     variant="contained" size="small">
                                     {btnTextConfirm}
-                                </Button>
+                                </LoadingButton>
                             </div>)
                             : null
                     }
