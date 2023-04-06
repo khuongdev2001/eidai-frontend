@@ -19,6 +19,7 @@ const schema = {
     product_excerpt: "",
     images: [],
     price: 0,
+    is_popular: 0,
     status: STATUS_ACTIVE
 }
 

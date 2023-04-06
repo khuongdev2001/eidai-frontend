@@ -167,10 +167,13 @@ function FormProduct() {
                         endAdornment={<InputAdornment position="end">VNĐ</InputAdornment>}
                     />
                 </FormControl>
-                <FormGroup>
+                <FormGroup sx={{ paddingX: 5 }}>
                     <FormControlLabel control={<Checkbox checked={Boolean(product.status)} onChange={(e) => {
                         handleSetField("status", Number(!product.status));
-                    }} />} label="Sản phẩm hoàn thành" />
+                    }} />} label="Công khai" />
+                    <FormControlLabel control={<Checkbox checked={Boolean(product.is_popular)} onChange={(e) => {
+                        handleSetField("is_popular", Number(!product.is_popular));
+                    }} />} label="SP nổi bậc" />
                 </FormGroup>
                 <FormControl sx={{ width: 200 }} className={[styles.filterItem].join(" ")} size="small">
                     <InputLabel id="demo-select-small">Danh Mục</InputLabel>

@@ -257,7 +257,14 @@ function Product() {
                                             {product.product_title}
                                         </TableCell>
                                         <TableCell>
-                                            {product.category?.category_name}
+                                            <div>
+                                                <p>
+                                                    {product.category?.category_name}
+                                                </p>
+                                                <p className={styles.is_popular}>
+                                                    {product.is_popular ? "(Sản Phẩm Nổi Bật)" : ""}
+                                                </p>
+                                            </div>
                                         </TableCell>
                                         <TableCell>
                                             {currencyFormatter.format(product.price, { code: "VNĐ", precision: 0 })}

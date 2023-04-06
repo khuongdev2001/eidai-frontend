@@ -12,6 +12,7 @@ import { BarLoading } from "./components/layout/Loading";
 import Product from "./pages/product/Product";
 import ProductCategoryPage from "./pages/product/ProductCategoryPage";
 import ProductPropertyPage from "./pages/product/ProductPropertyPage";
+import ReactBeautiful from "./pages/test/ReactBeautiful";
 // const Product = React.lazy(() => import('./pages/product/Product'));
 // const ProductPropertyPage = React.lazy(() => import("./pages/product/ProductPropertyPage"));
 // const ProductCategoryPage = React.lazy(() => import("./pages/product/ProductCategoryPage"));
@@ -50,6 +51,9 @@ function RouterPage() {
                 } />
                 <Route path="/reactjs/post/category" element={
                     <Slider />
+                } />
+                <Route path="/test" element={
+                    <ReactBeautiful />
                 } />
             </Routes>
         </Router>
