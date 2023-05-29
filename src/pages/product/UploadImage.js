@@ -5,7 +5,6 @@ import { BoxFlex } from "../../components/layout/Base";
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { API_DELETE_UPLOAD_IMAGE, API_UPLOAD_IMAGE } from "../../api/product";
 import axiosCommon, { BASE_URL_STOREAGE } from "../../api/axios";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 function UploadImage({ product, setProduct }) {
 
@@ -30,21 +29,21 @@ function UploadImage({ product, setProduct }) {
     }
 
     function handleRemoveFile(index) {
-        // axiosCommon.post(API_DELETE_UPLOAD_IMAGE, "", {
-        //     params: {
-        //         path: product.images[index]
-        //     }
-        // })
-        //     .finally(function () {
-        // setProduct((preveState) => {
-        //     const images = product.images;
-        //     images.splice(index, 1);
-        //     return {
-        //         ...preveState,
-        //         images
-        //     }
-        // })
-        // });
+        axiosCommon.post(API_DELETE_UPLOAD_IMAGE, "", {
+            params: {
+                path: product.images[index]
+            }
+        })
+            .finally(function () {
+                setProduct((preveState) => {
+                    const images = product.images;
+                    images.splice(index, 1);
+                    return {
+                        ...preveState,
+                        images
+                    }
+                })
+            });
     }
     return (<BoxFlex className={styles.listImageProduct}>
         {
